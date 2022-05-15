@@ -1,4 +1,4 @@
-package espresso;
+package espresso.tests;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -18,9 +18,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import espresso.fragments.CartFragment;
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class EspressoTest {
+public class GoToCartTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule =
@@ -28,28 +30,8 @@ public class EspressoTest {
 
     @Test
     public void goToShoppingCartTest() {
-        onView(withId(R.id.navigation_cart))
-                .check(matches(isDisplayed()))
-                .perform(click());
-        onView(withId(R.id.text_cart))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void goToMenuTest() {
-        onView(withId(R.id.navigation_food))
-                .check(matches(isDisplayed()))
-                .perform(click());
-        onView(withId(R.id.text_food))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void goToProfileTest() {
-        onView(withId(R.id.navigation_profile))
-                .check(matches(isDisplayed()))
-                .perform(click());
-        onView(withId(R.id.text_profile))
-                .check(matches(isDisplayed()));
+        CartFragment fragment = new CartFragment();
+        fragment.open()
+                .checkOpened();
     }
 }
